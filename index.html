@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <style>
+        .heading-2 {
+            font-size: 36px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .home-bg-img-section {
+            background-image: url(./bg-pink-img.svg);
+            background-size: cover;
+        }
+
+        .home-bg-img-section.pink-bg {
+            position: relative;
+        }
+
+        @media screen and (max-width: 768px) {
+            .home-bg-img-section.pink-bg {
+                background-image: url(./bg-pink-img-mobile.svg) !important;
+                background-color: #ece3e2;
+            }
+        }
+
+        .home-h-100 {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .home-h-100.first-section {
+            min-height: calc(100vh - 100px);
+        }
+
+        .text-main {
+            font-size: 18px;
+            line-height: 1.5;
+            font-weight: 400;
+            color: #000;
+        }
+
+        .text-huge {
+            font-size: 70px;
+            line-height: 1;
+            font-weight: 600;
+            color: #535353;
+            text-align: center;
+        }
+
+        .text-small {
+            font-size: 16px;
+            line-height: 1.5;
+            font-weight: 400;
+            color: #535353;
+        }
+
+        .text-lighty {
+            font-size: 18px;
+            line-height: 1.5;
+            font-weight: 600;
+            color: #c4c4c4;
+        }
+
+        .calculator-result {
+            width: 94%;
+            max-width: 495px;
+            margin: 30px auto 20px;
+            padding: 48px 68px;
+            border: none;
+            border-radius: 20px;
+            background-color: #ece3e2;
+        }
+
+        @media screen and (max-width: 768px) {
+            .calculator-result {
+                padding: 20px 10px;
+            }
+        }
+
+        .currency-img {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 30px;
+        }
+
+        .slidecontainer {
+            width: 100%;
+            position: relative;
+        }
+
+        #min-sub,
+        #min-sub2 {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            font-size: 14px;
+            font-weight: 500;
+            color: #a7a7a7;
+        }
+
+        #max-sub {
+            position: absolute;
+            bottom: -30px;
+            right: 0;
+            font-size: 14px;
+            font-weight: 500;
+            color: #a7a7a7;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 5px;
+            background: #c4c4c4;
+            outline: none;
+            opacity: 0.8;
+            -webkit-transition: 0.2s;
+            transition: opacity 0.2s;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 32px;
+            height: 32px;
+            border: 0;
+            background: url(./range.svg) no-repeat;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 32px;
+            height: 32px;
+            border: 0;
+            background: url(./range.svg) no-repeat;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        input[type=range]::-webkit-slider-thumb,
+        input[type=range]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: green;
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+        }
+
+        .calculator-value span {
+            padding-left: 20px;
+            font-size: 45px;
+            font-weight: 600;
+            line-height: 1;
+            color: #000;
+        }
+
+
+        .btn-main {
+            padding: 12px 64px;
+            border: none;
+            border-radius: 32px;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            color: #f5faf5;
+            background: #65bcbf;
+            box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.5),
+                5px 5px 10px rgba(171, 204, 170, 0.25),
+                10px 10px 20px rgba(171, 204, 170, 0.5), -10px -10px 20px #ffffff;
+            outline: none;
+            outline-offset: 0px;
+            outline-width: 0px;
+            cursor: pointer;
+        }
+    </style>
+
+    <div class="home-bg-img-section pink-bg">
+        <div class="container home-h-100 py-5">
+            <div class="row px-4 py-5">
+                <div class="col-12 col-lg-6">
+                    <h2 class="heading-2">What about the money?</h2>
+                    <p class="text-main">You are in control here. The revenue will depend on the number of
+                        subscribers you have and on the subscription price toy set.</p>
+                    <div class="calculator">
+                        <h5 class="heading-5">Subscribers</h5>
+                        <p class="calculator-value mt-3">
+                            <img src="./croud.svg" style="width: 38px;     position: relative; top: -12px;" alt="">
+                            <span id="subscribersValue">300</span>
+                        </p>
+                        <div class="slidecontainer mb-5">
+                            <input type="range" min="0" max="10000" value="300" class="slider" id="subscribers">
+                            <span id="min-sub">0</span>
+                            <span id="max-sub">10000</span>
+                        </div>
+                        <h5 class="heading-5">Subscription Price
+                            <span class="text-lighty">(USD/month)</span>
+                        </h5>
+                        <p class="calculator-value mt-3">
+                            <img src="./dollar.svg" style="width: 16px;position: relative; top: -12px;" alt="">
+                            <span id="subscriptionPriceValue">2400</span>
+                        </p>
+                        <div class="slidecontainer mb-5">
+                            <input type="range" min="17" max="300" value="17" class="slider" id="subscriptionPrice">
+                            <span id="min-sub2">Min</span>
+                        </div>
+                    </div>
+                    <a href="#" class="d-block btn-main mt-md-3">Sign up now</a>
+                </div>
+                <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center">
+                    <div class="calculator-result">
+                        <p class="text-main">Your total payment will be</p>
+                        <p class="text-huge mt-3 mb-5" style="position: relative;"><img
+                                src="./dollar.svg" class="currency-img" alt="">
+                            <span id="calculation-result">1,673</span>
+                        </p>
+                        <p class="text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna</p>
+                        <p class="text-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let slider1 = document.getElementById("subscribers");
+        let output1 = document.getElementById("subscribersValue");
+        var slider2 = document.getElementById("subscriptionPrice");
+        var output2 = document.getElementById("subscriptionPriceValue");
+        let result = document.getElementById("calculation-result");
+
+        output1.innerHTML = slider1.value;
+        slider1.oninput = function () {
+            output1.innerHTML = this.value;
+            showResult();
+        }
+
+        output2.innerHTML = slider2.value;
+        slider2.oninput = function () {
+            output2.innerHTML = this.value;
+            showResult();
+        }
+
+        function showResult() {
+            let resVal = slider1.value *
+                slider2.value;
+            result.innerHTML = resVal;
+        }
+    </script>
+</body>
+
+</html>
